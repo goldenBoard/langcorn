@@ -94,6 +94,7 @@ def make_handler(request_cls, chain):
             api_key = set_openai_key(llm_api_key)
             run_params = request.dict()
             memory = run_params.pop("memory", [])
+            history = run_params.pop("history",None)
             if chain.memory and memory and memory[0]:
                 chain.memory.chat_memory.messages = messages_from_dict(memory)
             if not retrieval_chain:
