@@ -98,6 +98,8 @@ def make_handler(request_cls, chain):
             # Hack to get the on-prem to work.
             if chain.memory and memory and memory[0] :
                 chain.memory.chat_memory.messages = messages_from_dict(memory)
+            else:
+                chain.memory.chat_memory.messages = messages_from_dict([{}])
             if not retrieval_chain:
                 output = chain.run(run_params)
             else:
